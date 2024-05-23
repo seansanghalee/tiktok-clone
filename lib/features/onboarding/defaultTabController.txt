@@ -1,0 +1,59 @@
+DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        bottomNavigationBar: BottomAppBar(
+          child: Container(
+            padding: const EdgeInsets.symmetric(
+              vertical: Sizes.size48,
+            ),
+            child: const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TabPageSelector(
+                  selectedColor: Colors.black38,
+                ),
+              ],
+            ),
+          ),
+        ),
+        body: const SafeArea(
+          child: TabBarView(children: [
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Gaps.v36,
+                  Text("Watch cool videos!"),
+                  Gaps.v10,
+                  Text(
+                      "Videos are personalized for you based on what you watch, like, and share"),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Gaps.v36,
+                  Text("Watch cool videos!"),
+                  Gaps.v10,
+                  Text("ayoz1"),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Gaps.v36,
+                  Text("Watch cool videos!"),
+                  Gaps.v10,
+                  Text("ayoz1"),
+                ],
+              ),
+            ),
+          ]),
+        ),
+      ),
+    );
+  

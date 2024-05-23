@@ -1,27 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tiktok_clone/authentication/log_in_form_screen.dart';
-import 'package:tiktok_clone/authentication/widgets/authentication_button.dart';
-
+import 'package:tiktok_clone/features/authentication/log_in_screen.dart';
+import 'package:tiktok_clone/features/authentication/username_screen.dart';
+import 'package:tiktok_clone/features/authentication/widgets/authentication_button.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 
-class LogInScreen extends StatefulWidget {
-  const LogInScreen({super.key});
+class SignUpScreen extends StatelessWidget {
+  const SignUpScreen({super.key});
 
-  @override
-  State<LogInScreen> createState() => _LogInScreenState();
-}
-
-class _LogInScreenState extends State<LogInScreen> {
   void onLogInTap(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => const LogInFormScreen(),
-    ));
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const LogInScreen(),
+      ),
+    );
   }
 
-  void onSignUpTap(BuildContext context) {
-    Navigator.of(context).pop();
+  void onUsernameTap(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const UsernameScreen(),
+      ),
+    );
   }
 
   @override
@@ -37,7 +38,7 @@ class _LogInScreenState extends State<LogInScreen> {
             children: [
               Gaps.v80,
               const Text(
-                "Log in to TikTok",
+                "Sign up for TikTok",
                 style: TextStyle(
                   fontSize: Sizes.size28,
                   fontWeight: FontWeight.w700,
@@ -45,7 +46,7 @@ class _LogInScreenState extends State<LogInScreen> {
               ),
               Gaps.v20,
               const Text(
-                "Manage your account, check notifications, comment on videos, and more.",
+                "Create a profile, follow other accounts, make your own videos, and more.",
                 style: TextStyle(
                   fontSize: Sizes.size16,
                   color: Colors.black45,
@@ -55,13 +56,19 @@ class _LogInScreenState extends State<LogInScreen> {
               Gaps.v40,
               AuthenticationButton(
                 icon: const FaIcon(FontAwesomeIcons.user),
-                text: "Use phone / email / username",
-                onTap: onLogInTap,
+                text: "Use phone or email",
+                onTap: onUsernameTap,
               ),
               Gaps.v16,
               AuthenticationButton(
                 icon: const FaIcon(FontAwesomeIcons.facebook),
                 text: "Continue with Facebook",
+                onTap: (context) {},
+              ),
+              Gaps.v16,
+              AuthenticationButton(
+                icon: const FaIcon(FontAwesomeIcons.apple),
+                text: "Continue with Apple",
                 onTap: (context) {},
               ),
               Gaps.v16,
@@ -82,12 +89,12 @@ class _LogInScreenState extends State<LogInScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text("Dont' have an account?"),
+              const Text("Already have an account?"),
               Gaps.h5,
               GestureDetector(
-                onTap: () => onSignUpTap(context),
+                onTap: () => onLogInTap(context),
                 child: Text(
-                  "Sign up",
+                  "Log in",
                   style: TextStyle(
                       color: Theme.of(context).primaryColor,
                       fontWeight: FontWeight.bold),
