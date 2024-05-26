@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/main_navigation/widgets/navigation_tab.dart';
 import 'package:tiktok_clone/features/main_navigation/widgets/post_video_button.dart';
+import 'package:tiktok_clone/features/videos/video_timeline_sreen.dart';
 
 class MainNavigationScreen extends StatefulWidget {
   const MainNavigationScreen({super.key});
@@ -16,19 +17,19 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
 
   final screens = [
     const Center(
-      child: Text("Home"),
+      child: VideoTimelineScreen(),
     ),
-    const Center(
-      child: Text("Explore"),
+    Center(
+      child: Container(),
     ),
-    const Center(
-      child: Text("Create"),
+    Center(
+      child: Container(),
     ),
-    const Center(
-      child: Text("Message"),
+    Center(
+      child: Container(),
     ),
-    const Center(
-      child: Text("Profile"),
+    Center(
+      child: Container(),
     )
   ];
 
@@ -52,6 +53,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Stack(
         children: [
           Offstage(
