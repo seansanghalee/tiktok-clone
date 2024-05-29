@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/discover/discover_screen.dart';
+import 'package:tiktok_clone/features/inbox/inbox_screen.dart';
 import 'package:tiktok_clone/features/main_navigation/widgets/navigation_tab.dart';
 import 'package:tiktok_clone/features/main_navigation/widgets/post_video_button.dart';
 import 'package:tiktok_clone/features/videos/video_timeline_sreen.dart';
@@ -26,8 +27,8 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     Center(
       child: Container(),
     ),
-    Center(
-      child: Container(),
+    const Center(
+      child: InboxScreen(),
     ),
     Center(
       child: Container(),
