@@ -32,7 +32,10 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       child: InboxScreen(),
     ),
     const Center(
-      child: UserProfileScreen(),
+      child: UserProfileScreen(
+        username: "sean",
+        tab: "",
+      ),
     )
   ];
 

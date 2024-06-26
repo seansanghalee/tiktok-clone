@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 // import 'package:tiktok_clone/features/authentication/sign_up_screen.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
-import 'package:tiktok_clone/features/main_navigation/main_navigation_screen.dart';
+import 'package:tiktok_clone/router.dart';
 
 void main() async {
   // reset binding between framework and engine
@@ -27,8 +27,10 @@ class TikTokApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: router,
       title: "TikTok Clone",
+      themeMode: ThemeMode.system,
       theme: ThemeData(
         useMaterial3: false,
         scaffoldBackgroundColor: Colors.white,
@@ -51,7 +53,25 @@ class TikTokApp extends StatelessWidget {
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,
       ),
-      home: const LayoutBuilderCodeLab(),
+      darkTheme: ThemeData(
+        appBarTheme: const AppBarTheme(
+          foregroundColor: Colors.white,
+          backgroundColor: Colors.black,
+          elevation: 0,
+          titleTextStyle: TextStyle(
+            color: Colors.white,
+            fontSize: Sizes.size16 + Sizes.size2,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        brightness: Brightness.dark,
+        scaffoldBackgroundColor: Colors.black,
+        primaryColor: const Color(0xFFE9435A),
+        bottomAppBarTheme: BottomAppBarTheme(
+          color: Colors.grey.shade800,
+          elevation: 2,
+        ),
+      ),
     );
   }
 }

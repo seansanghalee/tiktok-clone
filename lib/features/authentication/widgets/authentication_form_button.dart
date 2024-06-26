@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/utils.dart';
 
 class AuthenticationFormButton extends StatelessWidget {
   final bool disabled;
@@ -25,7 +26,9 @@ class AuthenticationFormButton extends StatelessWidget {
               Sizes.size5,
             ),
             color: disabled
-                ? Colors.grey.shade300
+                ? isDarkMode(context)
+                    ? Colors.grey.shade800
+                    : Colors.grey.shade300
                 : Theme.of(context).primaryColor),
         child: AnimatedDefaultTextStyle(
           style: TextStyle(

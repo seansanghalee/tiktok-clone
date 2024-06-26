@@ -1,28 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tiktok_clone/features/authentication/log_in_screen.dart';
-import 'package:tiktok_clone/features/authentication/username_screen.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tiktok_clone/features/authentication/widgets/authentication_button.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/utils.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
 
   void onLogInTap(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => const LogInScreen(),
-      ),
-    );
+    context.push("/login");
   }
 
   void onUsernameTap(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => const UsernameScreen(),
-      ),
-    );
+    context.push("/username");
   }
 
   @override
@@ -46,11 +38,13 @@ class SignUpScreen extends StatelessWidget {
                   ),
                 ),
                 Gaps.v20,
-                const Text(
+                Text(
                   "Create a profile, follow other accounts, make your own videos, and more.",
                   style: TextStyle(
                     fontSize: Sizes.size16,
-                    color: Colors.black45,
+                    color: isDarkMode(context)
+                        ? Colors.grey.shade300
+                        : Colors.black45,
                   ),
                   textAlign: TextAlign.center,
                 ),

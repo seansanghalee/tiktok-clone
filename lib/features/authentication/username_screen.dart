@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tiktok_clone/features/authentication/email_screen.dart';
 import 'package:tiktok_clone/features/authentication/widgets/authentication_form_button.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
@@ -40,11 +41,7 @@ class _UsernameScreenState extends State<UsernameScreen> {
       return;
     }
 
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => const EmailScreen(),
-      ),
-    );
+    context.push("/email", extra: EmailScreenArgs(username: username));
   }
 
   @override

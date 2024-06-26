@@ -7,7 +7,14 @@ import 'package:tiktok_clone/features/users/widgets/persisten_tab_bar.dart';
 import 'package:tiktok_clone/features/users/widgets/user_info.dart';
 
 class UserProfileScreen extends StatefulWidget {
-  const UserProfileScreen({super.key});
+  final String username;
+  final String tab;
+
+  const UserProfileScreen({
+    super.key,
+    required this.username,
+    required this.tab,
+  });
 
   @override
   State<UserProfileScreen> createState() => _UserProfileScreenState();
@@ -26,6 +33,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: DefaultTabController(
+        initialIndex: widget.tab == "likes" ? 1 : 0,
         length: 2,
         child: NestedScrollView(
           body: TabBarView(
