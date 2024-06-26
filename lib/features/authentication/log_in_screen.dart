@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:go_router/go_router.dart';
+import 'package:tiktok_clone/features/authentication/log_in_form_screen.dart';
 import 'package:tiktok_clone/features/authentication/widgets/authentication_button.dart';
 
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 
 class LogInScreen extends StatefulWidget {
+  static const routeUrl = "/login";
+  static const routeName = "login";
   const LogInScreen({super.key});
 
   @override
@@ -15,7 +17,12 @@ class LogInScreen extends StatefulWidget {
 
 class _LogInScreenState extends State<LogInScreen> {
   void onLogInTap(BuildContext context) {
-    context.pop();
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const LogInFormScreen(),
+      ),
+    );
   }
 
   void onSignUpTap(BuildContext context) {

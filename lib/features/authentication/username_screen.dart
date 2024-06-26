@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:tiktok_clone/features/authentication/email_screen.dart';
 import 'package:tiktok_clone/features/authentication/widgets/authentication_form_button.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
@@ -14,14 +13,14 @@ class UsernameScreen extends StatefulWidget {
 
 class _UsernameScreenState extends State<UsernameScreen> {
   final TextEditingController _usernameController = TextEditingController();
-  String username = "";
+  String _username = "";
 
   @override
   void initState() {
     super.initState();
     _usernameController.addListener(() {
       setState(() {
-        username = _usernameController.text;
+        _username = _usernameController.text;
       });
     });
   }
@@ -37,11 +36,18 @@ class _UsernameScreenState extends State<UsernameScreen> {
   }
 
   void onSignUpTap() {
-    if (username.isEmpty) {
+    if (_username.isEmpty) {
       return;
     }
 
-    context.push("/email", extra: EmailScreenArgs(username: username));
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => EmailScreen(
+          username: _username,
+        ),
+      ),
+    );
   }
 
   @override
@@ -97,7 +103,7 @@ class _UsernameScreenState extends State<UsernameScreen> {
               GestureDetector(
                 onTap: onSignUpTap,
                 child: AuthenticationFormButton(
-                  disabled: username.isEmpty,
+                  disabled: _username.isEmpty,
                   text: "Sign up",
                 ),
               ),

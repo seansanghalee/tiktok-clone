@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 
@@ -42,7 +43,9 @@ class _TutorialScreenState extends State<TutorialScreen> {
     }
   }
 
-  void _onEnterAppTap() {}
+  void _onEnterAppTap() {
+    context.go("/home");
+  }
 
   @override
   Widget build(BuildContext context) {

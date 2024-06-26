@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/features/onboarding/tutorial_screen.dart';
 import 'package:tiktok_clone/features/onboarding/widgets/interest_button.dart';
 import 'package:tiktok_clone/features/onboarding/widgets/onboarding_button.dart';
 
@@ -46,6 +47,8 @@ const interests = [
 ];
 
 class InterestsScreen extends StatefulWidget {
+  static const String routeName = "interests";
+  static const String routeUrl = "/tutorial";
   const InterestsScreen({super.key});
 
   @override
@@ -85,6 +88,24 @@ class _InterestsScreenState extends State<InterestsScreen> {
     super.dispose();
   }
 
+  void _onSkipTap() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const TutorialScreen(),
+      ),
+    );
+  }
+
+  void _onNextTap() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const TutorialScreen(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,18 +115,22 @@ class _InterestsScreenState extends State<InterestsScreen> {
             duration: const Duration(milliseconds: 200),
             child: const Text("Choose your interests")),
       ),
-      bottomNavigationBar: const BottomAppBar(
+      bottomNavigationBar: BottomAppBar(
         elevation: 2,
         child: Padding(
-          padding: EdgeInsets.symmetric(
+          padding: const EdgeInsets.symmetric(
             vertical: Sizes.size24,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              OnboardingButton(text: "Skip"),
+              GestureDetector(
+                  onTap: _onSkipTap,
+                  child: const OnboardingButton(text: "Skip")),
               Gaps.h10,
-              OnboardingButton(text: "Next"),
+              GestureDetector(
+                  onTap: _onNextTap,
+                  child: const OnboardingButton(text: "Next")),
             ],
           ),
         ),

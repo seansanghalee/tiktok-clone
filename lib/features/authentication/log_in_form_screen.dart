@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tiktok_clone/features/authentication/widgets/authentication_form_button.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/features/onboarding/interests_screen.dart';
 
 class LogInFormScreen extends StatefulWidget {
   const LogInFormScreen({super.key});
@@ -32,6 +34,7 @@ class _LogInFormScreenState extends State<LogInFormScreen> {
     if (_key.currentState != null) {
       if (_key.currentState!.validate()) {
         _key.currentState!.save();
+        context.goNamed(InterestsScreen.routeName);
       }
     }
   }

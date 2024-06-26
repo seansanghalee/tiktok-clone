@@ -64,9 +64,12 @@ class _PasswordScreenState extends State<PasswordScreen> {
     if (_password.isEmpty) {
       return;
     }
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => const BirthdayScreen(),
-    ));
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const BirthdayScreen(),
+      ),
+    );
   }
 
   @override
