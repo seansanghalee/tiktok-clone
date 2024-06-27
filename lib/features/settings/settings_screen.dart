@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:tiktok_clone/common/widgets/video_config/video_config.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -22,157 +23,157 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Settings"),
-        ),
-        body: ListView(
-          children: [
-            CupertinoSwitch(
-                value: _notifications, onChanged: _onNotificationsChanged),
-            Switch(value: _notifications, onChanged: _onNotificationsChanged),
-            SwitchListTile.adaptive(
-              value: VideoConfigData.of(context).autoMute,
-              onChanged: (value) {
-                VideoConfigData.of(context).toggleMuted();
-              },
-              title: const Text("Auto Mute"),
-              subtitle: const Text("Auto Mute"),
-            ),
-            CheckboxListTile(
-              value: _notifications,
-              onChanged: _onNotificationsChanged,
-              activeColor: Colors.black,
-              checkColor: Colors.red,
-              title: const Text("Enable notifications"),
-            ),
-            ListTile(
-              onTap: () async {
-                // final date = await showDatePicker(
-                //     context: context,
-                //     firstDate: DateTime(1980),
-                //     lastDate: DateTime(2030),
-                //     initialDate: DateTime.now());
+      appBar: AppBar(
+        title: const Text("Settings"),
+      ),
+      body: ListView(
+        children: [
+          CupertinoSwitch(
+              value: _notifications, onChanged: _onNotificationsChanged),
+          Switch(value: _notifications, onChanged: _onNotificationsChanged),
+          SwitchListTile.adaptive(
+            value: context.watch<VideoConfig>().isMuted,
+            onChanged: (value) {
+              context.read<VideoConfig>().toggleIsMuted();
+            },
+            title: const Text("Auto Mute"),
+          ),
+          CheckboxListTile(
+            value: _notifications,
+            onChanged: _onNotificationsChanged,
+            activeColor: Colors.black,
+            checkColor: Colors.red,
+            title: const Text("Enable notifications"),
+          ),
+          ListTile(
+            onTap: () async {
+              // final date = await showDatePicker(
+              //     context: context,
+              //     firstDate: DateTime(1980),
+              //     lastDate: DateTime(2030),
+              //     initialDate: DateTime.now());
 
-                // final time = await showTimePicker(
-                //   context: context,
-                //   initialTime: TimeOfDay.now(),
-                // );
+              // final time = await showTimePicker(
+              //   context: context,
+              //   initialTime: TimeOfDay.now(),
+              // );
 
-                // final booking = await showDateRangePicker(
-                //   context: context,
-                //   firstDate: DateTime(1980),
-                //   lastDate: DateTime(2030),
-                //   builder: (context, child) {
-                //     return Theme(
-                //       data: ThemeData(
-                //         appBarTheme: const AppBarTheme(
-                //           foregroundColor: Colors.white,
-                //           backgroundColor: Colors.black,
-                //         ),
-                //       ),
-                //       child: child!,
-                //     );
-                //   },
-                // );
-              },
-              title: const Text("When is your birthday?"),
+              // final booking = await showDateRangePicker(
+              //   context: context,
+              //   firstDate: DateTime(1980),
+              //   lastDate: DateTime(2030),
+              //   builder: (context, child) {
+              //     return Theme(
+              //       data: ThemeData(
+              //         appBarTheme: const AppBarTheme(
+              //           foregroundColor: Colors.white,
+              //           backgroundColor: Colors.black,
+              //         ),
+              //       ),
+              //       child: child!,
+              //     );
+              //   },
+              // );
+            },
+            title: const Text("When is your birthday?"),
+          ),
+          const ListTile(
+            title: Text(
+              "About",
+              style: TextStyle(fontWeight: FontWeight.w600),
             ),
-            const ListTile(
-              title: Text(
-                "About",
-                style: TextStyle(fontWeight: FontWeight.w600),
-              ),
-              subtitle: Text("About this app...."),
-            ),
-            ListTile(
-              title: const Text("Log out (Android)"),
-              textColor: Colors.red,
-              onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    title: const Text("Are you sure?"),
-                    content: const Text("for real for real?"),
-                    actions: [
-                      TextButton(
-                        onPressed: () => Navigator.of(context).pop(),
-                        child: const Text("Yes"),
-                      ),
-                      TextButton(
-                        onPressed: () => Navigator.of(context).pop(),
-                        child: const Text("No"),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ),
-            ListTile(
-              title: const Text("Log out (iOS)"),
-              textColor: Colors.red,
-              onTap: () {
-                showCupertinoDialog(
-                  context: context,
-                  builder: (context) => CupertinoAlertDialog(
-                    title: const Text("Are you sure?"),
-                    content: const Text("for real for real?"),
-                    actions: [
-                      CupertinoDialogAction(
-                        onPressed: () => Navigator.of(context).pop(),
-                        child: const Text("Yes"),
-                      ),
-                      CupertinoDialogAction(
-                        onPressed: () => Navigator.of(context).pop(),
-                        child: const Text("No"),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ),
-            ListTile(
-              title: const Text("Log out (iOS / Bottom)"),
-              textColor: Colors.red,
-              onTap: () {
-                showCupertinoModalPopup(
-                  context: context,
-                  builder: (context) => CupertinoAlertDialog(
-                    title: const Text("Are you sure?"),
-                    content: const Text("for real for real?"),
-                    actions: [
-                      CupertinoDialogAction(
-                        onPressed: () => Navigator.of(context).pop(),
-                        child: const Text("Yes"),
-                      ),
-                      CupertinoDialogAction(
-                        onPressed: () => Navigator.of(context).pop(),
-                        child: const Text("No"),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ),
-            ListTile(
-              title: const Text("Log out (iOS / Bottom / ActionSheet)"),
-              textColor: Colors.red,
-              onTap: () {
-                showCupertinoModalPopup(
-                  context: context,
-                  builder: (context) => CupertinoActionSheet(
-                    title: const Text("Are you sure?"),
-                    actions: [
-                      CupertinoActionSheetAction(
-                        onPressed: () {},
-                        child: const Text("Ayo"),
-                      )
-                    ],
-                  ),
-                );
-              },
-            ),
-            const AboutListTile(),
-          ],
-        ));
+            subtitle: Text("About this app...."),
+          ),
+          ListTile(
+            title: const Text("Log out (Android)"),
+            textColor: Colors.red,
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: const Text("Are you sure?"),
+                  content: const Text("for real for real?"),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: const Text("Yes"),
+                    ),
+                    TextButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: const Text("No"),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text("Log out (iOS)"),
+            textColor: Colors.red,
+            onTap: () {
+              showCupertinoDialog(
+                context: context,
+                builder: (context) => CupertinoAlertDialog(
+                  title: const Text("Are you sure?"),
+                  content: const Text("for real for real?"),
+                  actions: [
+                    CupertinoDialogAction(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: const Text("Yes"),
+                    ),
+                    CupertinoDialogAction(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: const Text("No"),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text("Log out (iOS / Bottom)"),
+            textColor: Colors.red,
+            onTap: () {
+              showCupertinoModalPopup(
+                context: context,
+                builder: (context) => CupertinoAlertDialog(
+                  title: const Text("Are you sure?"),
+                  content: const Text("for real for real?"),
+                  actions: [
+                    CupertinoDialogAction(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: const Text("Yes"),
+                    ),
+                    CupertinoDialogAction(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: const Text("No"),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text("Log out (iOS / Bottom / ActionSheet)"),
+            textColor: Colors.red,
+            onTap: () {
+              showCupertinoModalPopup(
+                context: context,
+                builder: (context) => CupertinoActionSheet(
+                  title: const Text("Are you sure?"),
+                  actions: [
+                    CupertinoActionSheetAction(
+                      onPressed: () {},
+                      child: const Text("Ayo"),
+                    )
+                  ],
+                ),
+              );
+            },
+          ),
+          const AboutListTile(),
+        ],
+      ),
+    );
   }
 }
