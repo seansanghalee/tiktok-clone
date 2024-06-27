@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import 'package:tiktok_clone/common/widgets/video_config/video_config.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
-import 'package:tiktok_clone/features/videos/view_models/playback_config_vm.dart';
 import 'package:tiktok_clone/features/videos/widgets/video_button.dart';
 import 'package:tiktok_clone/features/videos/widgets/video_comments.dart';
 import 'package:video_player/video_player.dart';
@@ -65,23 +64,6 @@ class _VideoPostState extends State<VideoPost>
     _animationController.addListener(() {
       // setState(() {});
     });
-
-    context
-        .read<PlaybackConfigViewModel>()
-        .addListener(_onPlaybackConfigChanged);
-  }
-
-  void _onPlaybackConfigChanged() {
-    if (!mounted) {
-      return;
-    }
-    final muted = context.read<PlaybackConfigViewModel>().muted;
-
-    if (muted) {
-      _videoPlayerController.setVolume(0);
-    } else {
-      _videoPlayerController.setVolume(1);
-    }
   }
 
   @override
@@ -96,10 +78,7 @@ class _VideoPostState extends State<VideoPost>
     if (info.visibleFraction == 1 &&
         !_isPaused &&
         !_videoPlayerController.value.isPlaying) {
-      final autoplay = context.read<PlaybackConfigViewModel>().autoplay;
-      if (autoplay) {
-        _videoPlayerController.play();
-      }
+      _videoPlayerController.play();
     }
 
     if (_videoPlayerController.value.isPlaying && info.visibleFraction == 0) {
@@ -184,16 +163,12 @@ class _VideoPostState extends State<VideoPost>
             top: 40,
             child: IconButton(
               icon: FaIcon(
-                context.watch<PlaybackConfigViewModel>().muted
+                context.watch<VideoConfig>().isMuted
                     ? FontAwesomeIcons.volumeOff
                     : FontAwesomeIcons.volumeHigh,
                 color: Colors.white,
               ),
-              onPressed: () {
-                context
-                    .read<PlaybackConfigViewModel>()
-                    .setMuted(!context.read<PlaybackConfigViewModel>().muted);
-              },
+              onPressed: context.read<VideoConfig>().toggleIsMuted,
             ),
           ),
           const Positioned(
