@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tiktok_clone/common/widgets/video_config/video_config.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -29,6 +30,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
             CupertinoSwitch(
                 value: _notifications, onChanged: _onNotificationsChanged),
             Switch(value: _notifications, onChanged: _onNotificationsChanged),
+            SwitchListTile.adaptive(
+              value: VideoConfigData.of(context).autoMute,
+              onChanged: (value) {
+                VideoConfigData.of(context).toggleMuted();
+              },
+              title: const Text("Auto Mute"),
+              subtitle: const Text("Auto Mute"),
+            ),
             CheckboxListTile(
               value: _notifications,
               onChanged: _onNotificationsChanged,
