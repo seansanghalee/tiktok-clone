@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tiktok_clone/features/authentication/view_models/log_in_vm.dart';
 import 'package:tiktok_clone/features/authentication/widgets/authentication_form_button.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
-import 'package:tiktok_clone/features/onboarding/interests_screen.dart';
 
-class LogInFormScreen extends StatefulWidget {
+class LogInFormScreen extends ConsumerStatefulWidget {
   const LogInFormScreen({super.key});
 
   @override
-  State<LogInFormScreen> createState() => _LogInFormScreenState();
+  ConsumerState<LogInFormScreen> createState() => _LogInFormScreenState();
 }
 
-class _LogInFormScreenState extends State<LogInFormScreen> {
+class _LogInFormScreenState extends ConsumerState<LogInFormScreen> {
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
 
   Map<String, String> data = {};
@@ -34,7 +34,12 @@ class _LogInFormScreenState extends State<LogInFormScreen> {
     if (_key.currentState != null) {
       if (_key.currentState!.validate()) {
         _key.currentState!.save();
-        context.goNamed(InterestsScreen.routeName);
+        ref.read(logInProvider.notifier).logIn(
+              data["email"]!,
+              data["password"]!,
+              context,
+            );
+        // context.goNamed(InterestsScreen.routeName);
       }
     }
   }
@@ -75,15 +80,17 @@ class _LogInFormScreenState extends State<LogInFormScreen> {
                     validator: _validatePassword,
                     onSaved: (newValue) {
                       if (newValue != null) {
-                        data["email"] = newValue;
+                        data["password"] = newValue;
                       }
                     },
                   ),
                   Gaps.v28,
                   GestureDetector(
-                      onTap: _onLogInTap,
-                      child: const AuthenticationFormButton(
-                          disabled: false, text: "Log in"))
+                    onTap: _onLogInTap,
+                    child: AuthenticationFormButton(
+                        disabled: ref.watch(logInProvider).isLoading,
+                        text: "Log in"),
+                  )
                 ],
               )),
         ),

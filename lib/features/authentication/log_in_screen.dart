@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/features/authentication/log_in_form_screen.dart';
+import 'package:tiktok_clone/features/authentication/view_models/social_auth_vm.dart';
 import 'package:tiktok_clone/features/authentication/widgets/authentication_button.dart';
 
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 
-class LogInScreen extends StatefulWidget {
+class LogInScreen extends ConsumerWidget {
   static const routeUrl = "/login";
   static const routeName = "login";
   const LogInScreen({super.key});
 
-  @override
-  State<LogInScreen> createState() => _LogInScreenState();
-}
-
-class _LogInScreenState extends State<LogInScreen> {
   void onLogInTap(BuildContext context) {
     Navigator.push(
       context,
@@ -30,7 +27,7 @@ class _LogInScreenState extends State<LogInScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -65,9 +62,11 @@ class _LogInScreenState extends State<LogInScreen> {
               ),
               Gaps.v16,
               AuthenticationButton(
-                icon: const FaIcon(FontAwesomeIcons.facebook),
-                text: "Continue with Facebook",
-                onTap: (context) {},
+                icon: const FaIcon(FontAwesomeIcons.github),
+                text: "Continue with GitHub",
+                onTap: (context) {
+                  ref.read(socialAuthProvider.notifier).githubSignIn(context);
+                },
               ),
               Gaps.v16,
               AuthenticationButton(

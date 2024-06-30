@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "19172308769",
+    "project_id": "sanghalee-tiktok-clone",
+    "storage_bucket": "sanghalee-tiktok-clone.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:19172308769:android:28230ad6f4065e8971b060",
+        "android_client_info": {
+          "package_name": "com.example.tiktok_clone"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCLyiSKFsqZuZ0-GyoNvRv55Uo8p7ImsA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
