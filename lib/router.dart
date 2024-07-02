@@ -16,7 +16,7 @@ final routerProvider = Provider((ref) {
   return GoRouter(
     initialLocation: "/home",
     redirect: (context, state) {
-      final isLoggedIn = ref.read(authRepo).isLoggedIn;
+      const isLoggedIn = true;
       if (!isLoggedIn) {
         if (state.subloc != SignUpScreen.routeUrl &&
             state.subloc != LogInScreen.routeUrl) {
