@@ -72,7 +72,7 @@ final routerProvider = Provider((ref) {
       ),
       GoRoute(
         name: VideoRecordingScreen.routeName,
-        path: VideoRecordingScreen.routeUrl,
+        path: VideoRecordingScreen.routerUrl,
         pageBuilder: (context, state) => CustomTransitionPage(
           transitionDuration: const Duration(milliseconds: 200),
           child: const VideoRecordingScreen(),

@@ -5,7 +5,7 @@ import 'package:tiktok_clone/features/videos/models/video_model.dart';
 
 class VideoTimelineViewModel extends AsyncNotifier<List<VideoModel>> {
   final List<VideoModel> _list = [
-    VideoModel(title: "first"),
+    // VideoModel(title: "first"),
   ];
 
   @override
